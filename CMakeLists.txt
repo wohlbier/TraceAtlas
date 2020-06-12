@@ -16,15 +16,15 @@ find_package(indicators CONFIG REQUIRED) #indicators
 
 option(ENABLE_LINTER_ERROR "Run linter with errors" OFF)
 if(${ENABLE_LINTER_ERROR})
-    set(CMAKE_CXX_CLANG_TIDY 
-        clang-tidy-9;
+    set(CMAKE_CXX_CLANG_TIDY
+        clang-tidy;
         --warnings-as-errors=*;
         --checks=readability-*,-readability-magic-numbers,performance-*,portability-*,modernize-*,-modernize-use-trailing-return-type;
         )
     add_compile_options(-Werror)
 else()
-    set(CMAKE_CXX_CLANG_TIDY 
-        clang-tidy-9;
+    set(CMAKE_CXX_CLANG_TIDY
+        clang-tidy;
         --checks=readability-*,-readability-magic-numbers,performance-*,portability-*,modernize-*,-modernize-use-trailing-return-type;
         )
 endif()
@@ -40,7 +40,7 @@ function(InjectTracer tar)
     set_target_properties(${tar} PROPERTIES LINK_OPTIONS "-Wl,--plugin-opt=emit-llvm")
     target_compile_options(${tar} PRIVATE "-flto")
     add_custom_command(OUTPUT opt.bc
-        COMMAND opt-9 -load $<TARGET_FILE:AtlasPasses> -EncodedTrace $<TARGET_FILE:${tar}> -o opt.bc
+        COMMAND opt -load $<TARGET_FILE:AtlasPasses> -EncodedTrace $<TARGET_FILE:${tar}> -o opt.bc
         DEPENDS $<TARGET_FILE:${tar}>
     )
     set_source_files_properties(
@@ -82,7 +82,7 @@ endforeach ()
 
 add_custom_target(
     format
-    COMMAND /usr/bin/clang-format-9
+    COMMAND /usr/bin/clang-format
     -style=file
     -i
     ${ALL_SOURCE_FILES}
