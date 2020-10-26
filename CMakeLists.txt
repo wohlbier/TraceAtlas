@@ -9,6 +9,9 @@ message(STATUS "Found LLVM ${LLVM_PACKAGE_VERSION}")
 message(STATUS "Using LLVMConfig.cmake in: ${LLVM_DIR}")
 llvm_map_components_to_libnames(llvm_libs support core irreader bitreader bitwriter transformutils)
 
+#jgw
+set(CMAKE_POSITION_INDEPENDENT_CODE ON)
+
 #use the llvm toolchain
 #we fix these ourselves since we don't support gcc anyway
 #I want windows support, but passes on windows are tricky anyway so that is a secondary goal
