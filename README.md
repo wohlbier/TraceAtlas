@@ -1,6 +1,32 @@
+## jgw
+```
+module load llvm-9.0.1-clang-11.0.0-5u5pz7m
+module load papi-6.0.0.1-gcc-10.2.0-m2k5fwr
+module load nlohmann-json-3.9.1-gcc-10.2.0-widbhew
+module load zlib-1.2.11-clang-9.0.1-pomrxgh
+module load spdlog-1.8.1-gcc-10.2.0-53bou2j
+module load cmake-3.20.1-gcc-10.2.0-led4xjq
+module load ninja-1.10.2-gcc-10.2.0-erzvwdq
+
+git clone ssh://git@code.sei.cmu.edu:7999/~jgwohlbier/traceatlas.git
+cd traceatlas
+git co release
+git submodule init
+git submodule update
+cd vcpkg
+./bootstrap-vcpkg.sh
+vcpkg install indicators
+cd ../
+
+mkdir build
+cd build
+../arch/clang.sh
+ninja-build
+```
+
 # TraceAtlas
 
-TraceAtlas is a program analysis toolchain. It uses the LLVM api to profile programs dynamically and extract coarse-grained concurrent tasks automatically. 
+TraceAtlas is a program analysis toolchain. It uses the LLVM api to profile programs dynamically and extract coarse-grained concurrent tasks automatically.
 
 ![Unit Tests](https://github.com/ruhrie/TraceAtlas/workflows/Unit%20Tests/badge.svg)
 
