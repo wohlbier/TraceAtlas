@@ -39,13 +39,13 @@ if(${ENABLE_LINTER})
     else()
         message(STATUS "Found clang-tidy in ${TIDY}")
     endif()
-    
-    set(CMAKE_CXX_CLANG_TIDY 
+
+    set(CMAKE_CXX_CLANG_TIDY
         ${TIDY};
         --warnings-as-errors=*;
         --checks=readability-*,-readability-magic-numbers,performance-*,portability-*,modernize-*,-modernize-use-trailing-return-type,-readability-uppercase-literal-suffix;
         )
-    set(CMAKE_C_CLANG_TIDY 
+    set(CMAKE_C_CLANG_TIDY
         ${TIDY};
         --warnings-as-errors=*;
         --checks=readability-*,-readability-magic-numbers,performance-*,portability-*,-clang-analyzer-security.insecureAPI.*,-readability-uppercase-literal-suffix;
