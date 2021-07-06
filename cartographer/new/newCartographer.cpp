@@ -57,7 +57,7 @@ void RemoveNode(std::set<GraphNode *, p_GNCompare> &CFG, GraphNode *removeNode)
         auto pred = CFG.find(predID);
         if( pred != CFG.end() )
         {
-            (*pred)->neighbors.erase(removeNode->NID); 
+            (*pred)->neighbors.erase(removeNode->NID);
             for( const auto& neighbor : removeNode->neighbors )
             {
                 (*pred)->neighbors[neighbor.first] = neighbor.second;
