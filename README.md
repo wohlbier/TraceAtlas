@@ -1,17 +1,21 @@
 ## jgw
 ```
-# NB: need clang built with clang for llvm functionality to work.
+# NB: modules needed for building. specifically, need clang built with clang
+# for llvm functionality to work.
 # https://lists.llvm.org/pipermail/llvm-dev/2018-October/126683.html
 # Also note that clang@>=9.0.1 will not build clang@9.0.1
-module load cmake-3.20.5-clang-9.0.1-fzgejr5
-module load doxygen-1.9.1-clang-9.0.1-a7kqgu5
-module load llvm-9.0.1-clang-8.0.1-qjkzbvs
-module load ncurses-6.2-clang-9.0.1-d2osnys
-module load ninja-1.10.2-clang-9.0.1-2duaegj
-module load nlohmann-json-3.9.1-clang-9.0.1-bnnf4qi
-module load spdlog-1.8.5-clang-9.0.1-vxlskgd
-module load zlib-1.2.11-clang-9.0.1-pomrxgh
+# See below for running a command that will load these modules.
+# module load cmake-3.20.5-clang-9.0.1-fzgejr5
+# module load doxygen-1.9.1-clang-9.0.1-a7kqgu5
+# module load llvm-9.0.1-clang-8.0.1-qjkzbvs
+# module load ncurses-6.2-clang-9.0.1-d2osnys
+# module load ninja-1.10.2-clang-9.0.1-2duaegj
+# module load nlohmann-json-3.9.1-clang-9.0.1-bnnf4qi
+# module load spdlog-1.8.5-clang-9.0.1-vxlskgd
+# module load zlib-1.2.11-clang-9.0.1-pomrxgh
 
+
+# setting up repository
 git clone ssh://git@code.sei.cmu.edu:7999/~jgwohlbier/traceatlas.git
 cd traceatlas
 git co release
@@ -21,6 +25,9 @@ cd vcpkg
 ./bootstrap-vcpkg.sh
 ./vcpkg install indicators
 cd ../
+
+# load modules, run once per shell.
+. ./arch/env_gpu09.sh
 
 mkdir build
 cd build
