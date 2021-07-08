@@ -32,7 +32,8 @@ cd ../
 mkdir build
 cd build
 ../arch/clang.sh
-ninja-build
+ninja
+ctest
 ```
 
 # TraceAtlas
