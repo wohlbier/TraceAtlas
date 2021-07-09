@@ -32,7 +32,7 @@ cd ../
 mkdir build
 cd build
 ../arch/clang.sh
-ninja
+ninja install
 ctest
 ```
 
